@@ -1,0 +1,26 @@
+///add_vertex(vbuff, format, x, y, z)
+
+//Rgba color
+r=0; g=0; b=0; a=255;
+x3=argument2;
+y3=argument3;
+z3=argument4;
+//Create a normal buffer from the vertex buffer
+buff = buffer_create_from_vertex_buffer(argument0, buffer_fixed, 1);
+buffer_resize(buff, buffer_get_size(buff)+16);
+nbuff = buffer_create(16, buffer_fixed, 1);
+
+buffer_seek(nbuff, buffer_seek_start, 0);
+
+//Add the 3d position and color of a vertex to the buffer
+buffer_write(nbuff, buffer_f32, x3);          //x coordinate
+buffer_write(nbuff, buffer_f32, y3);          //y coordinate
+buffer_write(nbuff, buffer_f32, z3);          //z coordinate
+buffer_write(nbuff, buffer_u32, r | g << 8 | b << 16 | a << 24); //rgba color 0-255
+
+buffer_copy(nbuff, 0, 16, buff, buffer_get_size(buff)-16);
+
+//Update the vertex buffer and delete the normal buffer
+obj_controller.v_buff = vertex_create_buffer_from_buffer(buff, argument1);
+buffer_delete(nbuff);
+buffer_delete(buff);
