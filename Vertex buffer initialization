@@ -1,0 +1,19 @@
+///Vertex buffer initialization
+
+//Vertex format
+vertex_format_begin();
+vertex_format_add_position_3d();
+vertex_format_add_colour();
+my_format = vertex_format_end();
+
+v_buff = vertex_create_buffer();
+
+//Create point polygon so the buffer isn't 
+//empty for converting it to a normal buffer
+vertex_begin(v_buff, my_format);
+vertex_position_3d(v_buff, 0, 0, 0);vertex_colour(v_buff, c_black, 255);
+vertex_position_3d(v_buff, 0, 0, 0);vertex_colour(v_buff, c_black, 255);
+vertex_position_3d(v_buff, 0, 0, 0);vertex_colour(v_buff, c_black, 255);
+vertex_end(v_buff);
+
+tex = background_get_texture(background1);
