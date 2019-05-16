@@ -1,0 +1,12 @@
+///Update scene
+
+//Set the projection
+d3d_set_projection_ext(x, y, z, x+dsin(angle)*dcos(pitch),
+                                y+dcos(angle)*dcos(pitch),
+                                z+dsin(pitch), 0, 0, 1, 60, 
+                                window_get_width()/window_get_height(),
+                                0.001, 160000);
+
+//Draw the vertex buffer and the draw tool
+vertex_submit(v_buff, pr_trianglelist, tex);
+d3d_draw_ellipsoid(x1-2, y1-2, z1-2, x1+2, y1+2, z1+2, 0, 1, 1, 20);
