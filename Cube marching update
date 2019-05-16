@@ -1,0 +1,22 @@
+///Cube marching update
+
+//Draw tool dist away in front of you update
+dist+=mouse_wheel_up()-mouse_wheel_down();
+x1 = x+dsin(angle)*dcos(pitch)*dist;
+y1 = y+dcos(angle)*dcos(pitch)*dist;
+z1 = z+dsin(pitch)*dist;
+
+
+//If left mouse button pressed, clear the vertex buffer and cubemarch
+if(mouse_check_button_pressed(mb_left)){    
+    p0 = 1;
+    p1 = 0;
+    p2 = 0;
+    p3 = 0;
+    p4 = 0;
+    p5 = 0;
+    p6 = 0;
+    p7 = 0;
+        cube_march(v_buff, my_format, p0,p1,p2,p3,p4,p5,p6,p7,
+                   0, 0, 0, 5);
+}
